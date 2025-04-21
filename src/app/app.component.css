@@ -1,0 +1,79 @@
+/* Aseguramos que la página ocupe todo el espacio disponible */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Tipografía moderna */
+  background-color: #f4f4f4; /* Fondo suave gris claro */
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  height: 95vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+  margin: 0;
+}
+
+/* Lado izquierdo: lista de casas hogares */
+.sidebar {
+  width: 20rem; /* Ancho fijo para la barra lateral */
+  background-color: #bdb7a8; /* Gris cálido */
+  color: #fff; /* Texto blanco */
+  padding: 10px 9px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1); /* Sombra sutil para el contorno */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Alinea los elementos desde arriba */
+  height: 100%; /* Asegura que el sidebar ocupe toda la altura */
+  position: sticky;
+  top: 0; /* Fija el sidebar al inicio de la página */
+}
+
+.header-box {
+  background-color: #6d4f4f; /* Marrón suave */
+  color: #fff; /* Texto blanco */
+  padding: 3px;
+  border-radius: 3rem; /* Bordes redondeados */
+  margin-bottom: 30px; /* Espacio entre el encabezado y la lista */
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.6); /* Sombra sutil para el contorno */
+
+}
+
+.subtema {
+  font-size: 16px;
+  color: #281f1f; /* Texto gris suave */
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  background-color: #d0c8c0; /* Gris suave */
+  margin-bottom: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #b0a7a0; /* Gris más oscuro */
+  transform: translateX(10px); /* Efecto de deslizamiento */
+
+}
+
+/* Lado derecho: mapa */
+.map {
+  flex-grow: 1; /* Hace que el mapa ocupe el espacio restante */
+  background-color: #ffffff; /* Fondo blanco */
+  position: sticky;
+  height: 103%;
+  width: 100%;
+}
+
+
