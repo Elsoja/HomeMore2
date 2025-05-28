@@ -1,18 +1,16 @@
 <div class="container">
   <div class="sidebar">
     <div class="header-box">
-      <h2>Casas Hogares en Tijuana</h2>
+      <h2>Casas Hogar</h2>
     </div>
     <p class="subtema">Selecciona una casa hogar para ver su ubicación en el mapa.</p>
     <ul>
-      <li>Casa Hogar Belén, A.C.</li>
-      <li>Casa Hogar Verdad y Vida</li>
-      <li>Casa Hogar de Maria Inmaculada</li>
-      <li>Casa Hogar 4</li>
-      <!-- Agrega más casas hogares según sea necesario -->
+      <li *ngFor="let casa of casasHogar" (click)="centrarEnCasa(casa)">
+        {{ casa.nombre}}
+      </li>
     </ul>
   </div>
-  <div class="map">
-    <app-mapa></app-mapa> 
-  </div>
+  <section class="mapa">
+    <app-mapa [casasHogar]="casasHogar"></app-mapa>
+  </section>
 </div>
