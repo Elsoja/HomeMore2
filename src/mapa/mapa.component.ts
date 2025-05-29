@@ -1,15 +1,29 @@
-import { Component, AfterViewInit, Inject, PLATFORM_ID, Input } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  Inject,
+  PLATFORM_ID,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CasaHogar } from '../app/models/casa-hogar.model';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
   styleUrls: ['./mapa.component.css'],
-  standalone: true
+  standalone: true,
+  imports: [CommonModule] 
+
 })
-export class MapaComponent implements AfterViewInit {
+export class MapaComponent implements AfterViewInit, OnChanges {
   @Input() casasHogar: CasaHogar[] = [];
+  mapaCargado: boolean = false; 
+
   private map!: any;
   private L: any;
 
@@ -28,6 +42,21 @@ export class MapaComponent implements AfterViewInit {
       L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(this.map);
+
+      this.agregarMarcadores();
+      this.mapaCargado = true; // 👈 se desactiva el loader
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['casasHogar'] && this.map) {
+      this.agregarMarcadores();
+    }
+  }
+
+  agregarMarcadores() {
+    if (this.casasHogar && Array.isArray(this.casasHogar)) {
+      const L = this.L;
 
       const customIcon = L.icon({
         iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
@@ -50,10 +79,7 @@ export class MapaComponent implements AfterViewInit {
 
   centrarEnCasa(casa: CasaHogar) {
     if (this.map) {
-      console.log('Centrando en:', casa);
       this.map.setView([casa.lat, casa.lng], 15);
-    } else {
-      console.warn('Mapa aún no inicializado');
     }
   }
 }
