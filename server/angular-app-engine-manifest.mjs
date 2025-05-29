@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/home-more',
+  basePath: '.',
   supportedLocales: {
   "en-US": ""
 },
